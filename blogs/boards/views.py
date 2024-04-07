@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .models import Board
 
 def home(request):
@@ -20,5 +20,24 @@ def about(request):
     return render(request, 'about.html')
 
 def board_topics(request, pk):
-    board = Board.objects.get(pk=pk)
+    try:
+        board = Board.objects.get(pk=pk)
+    except Board.DoesNotExist:
+        raise Http404
     return render(request, 'topics.html', {'board': board})
+
+
+def question(request, pk):
+    return HttpResponse(f"Question : {pk}")
+
+def post(request, slug):
+    return HttpResponse(f"Slug : {slug}")
+
+def blog_post(request, slug, pk):
+    return HttpResponse(f"Blog_post : {slug} and PK : {pk}")
+
+def user_profile(request, username):
+    return HttpResponse(f"User Name : {username}")
+
+def year_archive(request, year):
+    return HttpResponse(f"Year: {year}")
