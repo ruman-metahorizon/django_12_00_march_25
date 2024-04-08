@@ -1,19 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Django Boards{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Peralta&display=swap" rel="stylesheet">
+  <title>{% block title %}Django Boards{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <ol class="breadcrumb my-4">
-        {% block breadcrumb %}
-        {% endblock %}
-      </ol>
-      {% block content %}
-      {% endblock %}
+      <a class="navbar-brand" href="{% url 'home' %}">Django Boards</a>
     </div>
-  </body>
+  </nav>
+  <div class="container">
+    <ol class="breadcrumb my-4">
+      {% block breadcrumb %}
+      {% endblock %}
+    </ol>
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
 </html>
